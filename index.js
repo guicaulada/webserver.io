@@ -1,5 +1,5 @@
 /*
-node-webserver - A simple webserver with socket to get things started.
+webserver.io - A simple webserver with socket to get things started.
 Copyright (C) 2019  Guilherme Caulada (Sighmir)
 
 This program is free software: you can redistribute it and/or modify

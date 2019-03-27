@@ -1,6 +1,6 @@
-# node-webserver #
+# webserver.io #
 
-**node-webserver** is a simple webserver with socket to get things started.
+**webserver.io** is a simple webserver with socket to get things started.
 
 ## Requirements
 * [express](https://www.npmjs.com/package/express)
@@ -10,13 +10,13 @@
 ## Documentation ##
 ### Getting Started
 
-Install node-webserver using npm:
+Install webserver.io using npm:
 
 ```bash
-$ npm install node-webserver
+$ npm install webserver.io
 ```
 
-You can now use node-webserver like so:
+You can now use webserver.io like so:
 
 ```js
 let server = new Server()
@@ -29,11 +29,11 @@ server.http.listen(4000)
 console.log('Terminal listening on localhost:4000')
 ```
 
-Refer to the [node-webserver examples](https://github.com/Sighmir/node-webserver/tree/master/example) for more information.  
+Refer to the [webserver.io examples](https://github.com/Sighmir/webserver.io/tree/master/example) for more information.  
 
 ## License ##
 ```
-node-webserver - A simple webserver with socket to get things started.
+webserver.io - A simple webserver with socket to get things started.
 Copyright (C) 2019  Guilherme Caulada (Sighmir)
 
 This program is free software: you can redistribute it and/or modify
