@@ -22,8 +22,13 @@ const Server = require('..')
 
 let server = new Server()
 
+server.app.set('view engine', 'ejs')
 server.app.use(express.static(path.join(__dirname, 'public')))
 server.app.set('views', path.join(__dirname, 'public'))
+
+server.app.get('/', (req, res) => {
+    res.render('./index.ejs')
+})
 
 server.http.listen(4000)
 
