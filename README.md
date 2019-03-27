@@ -19,10 +19,17 @@ $ npm install webserver.io
 You can now use webserver.io like so:
 
 ```js
+const Server = require('webserver.io')
+
 let server = new Server()
 
+server.app.set('view engine', 'ejs')
 server.app.use(express.static(path.join(__dirname, 'public')))
 server.app.set('views', path.join(__dirname, 'public'))
+
+server.app.get('/', (req, res) => {
+    res.render('./index.ejs')
+})
 
 server.http.listen(4000)
 

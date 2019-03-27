@@ -1,6 +1,6 @@
 {
   "name": "webserver.io",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A simple webserver with socket to get things started.",
   "main": "index.js",
   "directories": {
