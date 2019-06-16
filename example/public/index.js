@@ -20,5 +20,5 @@ const socket = io.connect('http://localhost:4000')
 
 socket.on('message', (data) => {
   console.log(data)
-  socket.emit('recieved', data)
+  socket.emit('received', data)
 })

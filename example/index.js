@@ -18,7 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 const path = require('path')
 const express = require('express')
-const Server = require('..')
+const Server = require('webserver.io')
 
 let server = new Server()
 
@@ -27,9 +27,14 @@ server.app.use(express.static(path.join(__dirname, 'public')))
 server.app.set('views', path.join(__dirname, 'public'))
 
 server.app.get('/', (req, res) => {
-    res.render('./index.ejs')
+  res.render('./index.ejs')
+})
+
+server.socket.on('connection', (client) => {
+  client.emit('message', 'hello')
+  client.on('received', data => console.log(data))
 })
 
 server.http.listen(4000)
 
-console.log('Terminal listening on localhost:4000')
+console.log('Server listening on localhost:4000')
