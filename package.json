@@ -1,13 +1,13 @@
 {
   "name": "webserver.io",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "A simple webserver with socket to get things started.",
   "main": "index.js",
   "directories": {
     "example": "example"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node example/index.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,6 @@
   "dependencies": {
     "ejs": "^2.6.1",
     "express": "^4.16.4",
-    "socket.io": "^2.2.0"
+    "ws": "^7.1.1"
   }
 }

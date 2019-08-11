@@ -4,7 +4,7 @@
 
 ## Requirements
 * [express](https://www.npmjs.com/package/express)
-* [socket.io](https://www.npmjs.com/package/socket.io) 
+* [ws](https://www.npmjs.com/package/ws) 
 * [ejs](https://www.npmjs.com/package/ejs)
 
 ## Documentation ##

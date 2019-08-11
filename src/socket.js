@@ -16,7 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-const io = require('socket.io')
+const WebSocket = require('ws')
 
 class ExtendableProxy {
   constructor(getset = {}) {
@@ -28,24 +28,47 @@ class Socket extends ExtendableProxy {
   constructor(server) {
     super({
       get: (socket, method) => {
-        if (method === 'clients' || method === 'io') return socket[method]
-        else return socket.io[method]
+        if (socket[method]) return socket[method]
+        else return socket.ws[method]
       }
     })
     let self = this
-    self.io = io(server)
-    self.clients = new Set()
-    self.on('connection', (client) => {
-      self.clients.add(client)
+    self.ws = new WebSocket.Server({ noServer: true })
+
+    server.on('upgrade', (req, socket, head) => {
+      self.ws.handleUpgrade(req, socket, head, (ws) => {
+        self.ws.emit('connection', ws, req)
+      })
+    })
+
+    self.ws.on('connection', (client) => {
+      client.isAlive = true
+
+      client.heartbeat = () => client.isAlive = true
+      client.on('pong', client.heartbeat)
 
       client.on('disconnect', () => {
         client.disconnect(true)
-        self.clients.delete(client)
       })
 
       client.on('finished', () => {
         client.end()
       })
+    })
+
+    self.heartbeat = setInterval(() => {
+      self.ws.clients.forEach((client) => {
+        if (client.isAlive === false) return client.terminate()
+        client.isAlive = false
+        client.ping(() => { })
+      })
+    }, 30000)
+  }
+
+  send(data) {
+    let self = this
+    self.ws.clients.forEach((client) => {
+      client.send(data)
     })
   }
 }

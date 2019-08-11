@@ -18,7 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 const path = require('path')
 const express = require('express')
-const Server = require('webserver.io')
+const Server = require('..') // webserver.io
 
 let server = new Server()
 
@@ -31,8 +31,8 @@ server.app.get('/', (req, res) => {
 })
 
 server.socket.on('connection', (client) => {
-  client.emit('message', 'hello')
-  client.on('received', data => console.log(data))
+  client.send('Hello World')
+  client.on('message', data => console.log(data))
 })
 
 server.http.listen(4000)

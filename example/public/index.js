@@ -16,9 +16,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-const socket = io.connect('http://localhost:4000')
+const socket = new WebSocket('ws://localhost:4000')
 
-socket.on('message', (data) => {
-  console.log(data)
-  socket.emit('received', data)
-})
+socket.onmessage = (message) => {
+  socket.send(message.data)
+}
